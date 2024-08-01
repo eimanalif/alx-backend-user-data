@@ -8,6 +8,7 @@ import os
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
+
 def filter_datum(
          fields: List[str], redaction: str, message: str, separator: str,
         ) -> str:
@@ -31,9 +32,10 @@ class RedactingFormatter(logging.Formatter):
     def format(self, record: logging.LogRecord) -> str:
         """formats a LogRecord"""
         original_message = super(
-            RedactingFormatter, self).format(record)
-        return filter_datum(self.fields, self.REDACTION, original_message, self.SEPARATOR)
-
+            RedactingFormatter, self).format(
+                record)
+        return filter_datum(self.fields,
+                            self.REDACTION, original_message, self.SEPARATOR)
 
 
 def get_logger() -> logging.Logger:
@@ -45,6 +47,7 @@ def get_logger() -> logging.Logger:
     logger.propagate = False
     logger.addHandler(stream_handler)
     return logger
+
 
 if __name__ == "__main__":
     main()
