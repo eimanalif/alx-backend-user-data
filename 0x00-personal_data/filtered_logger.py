@@ -3,6 +3,8 @@
 import logging
 import re
 from typing import List
+import mysql.connector
+import os
 
 
 def filter_datum(
@@ -11,6 +13,7 @@ def filter_datum(
     ''' replace log data'''
     pattern = f"({'|'.join(fields)})=([^{separator}]*)"
     return re.sub(pattern, lambda m: f"{m.group(1)}={redaction}", message)
+
 
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class"""
