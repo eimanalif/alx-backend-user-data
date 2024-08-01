@@ -67,8 +67,7 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
 
 def main():
     """Logs the information about user records in a table."""
-    fields =
-    "name,email,phone,ssn,password,ip,last_login,user_agent"
+    fields = "name,email,phone,ssn,password,ip,last_login,user_agent"
     columns = fields.split(',')
     query = "SELECT {} FROM users;".format(fields)
     info_logger = get_logger()
