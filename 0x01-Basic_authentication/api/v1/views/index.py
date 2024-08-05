@@ -32,4 +32,4 @@ def stats() -> str:
 @app_views.route('/api/v1/unauthorized', methods=['GET'])
 def get_unauthorized():
     '''401 error'''
-    abort(401)
+    return jsonify(stats)
