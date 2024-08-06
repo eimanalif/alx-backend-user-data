@@ -2,9 +2,8 @@
 """Basic authentication module for API"""
 import re
 import base64
-import binascii
 from typing import Tuple, TypeVar
-
+import binascii
 from .auth import Auth
 from models.user import User
 
