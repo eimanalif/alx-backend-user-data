@@ -43,4 +43,3 @@ def forbidden() -> None:
       - Forbidden error.
     """
     abort(403)
-  
