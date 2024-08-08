@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""A classs SessionAuth that inherits from AUTH"""
+"""classs SessionAuth that inherits from AUTH"""
 from api.v1.auth.auth import Auth
 from uuid import uuid4
 from models.user import User
 
 
 class SessionAuth(Auth):
-    """Session auth class with a class attribute"""
+    """Session auth class with class attribute"""
     user_id_by_session_id = {}
 
     def create_session(self, user_id: str = None) -> str:
-        """creates a session id for a user"""
+        """creates session id for a user"""
         if user_id is None:
             return None
 

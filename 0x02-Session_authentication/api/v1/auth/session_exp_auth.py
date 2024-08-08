@@ -8,7 +8,7 @@ import os
 class SessionExpAuth(SessionAuth):
     """SessionExpAuth class"""
     def __init__(self):
-        """Init class"""
+        """Initilize class"""
         try:
             self.session_duration = int(os.getenv('SESSION_DURATION'))
         except Exception:

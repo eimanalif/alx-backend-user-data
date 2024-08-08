@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-""""saving the session id and user id to a database like a file"""
+""""saving session id and user id to database like file"""
 from api.v1.auth.session_exp_auth import SessionExpAuth
 from datetime import datetime, timedelta
 from models.user_session import UserSession
 
 
 class SessionDBAuth(SessionExpAuth):
-    """Class inherts from SessionExPAuth and also saves the data to file db
+    """Class inherts from SessionExPAuth and also saves data to file db
     """
     def create_session(self, user_id=None):
         """
