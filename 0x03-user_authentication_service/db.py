@@ -5,6 +5,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import InvalidRequestError
 
 from user import Base
 from user import User
@@ -49,3 +51,19 @@ class DB:
             self._session.rollback()
             new_user = None
         return new_user
+
+    def find_user_by(self, **fillter) -> User:
+        '''find user based on filter'''
+        filter_fields, filter_values = [], []
+        for field, value in filters.items():
+            if hasattr(User, field):
+                filter_fields.append(getter(User, field))
+                filter_values.append(value)
+            else:
+                raise InvalidRequestError(f"Invalid filter:{field}")
+            user = self._session.quary(User).filter(
+                tuple_(*filter_fields).in_([tuple(filter_values)])
+            ).first()
+            if user is None:
+                raise NoResultFound("User not found.")
+            return user
