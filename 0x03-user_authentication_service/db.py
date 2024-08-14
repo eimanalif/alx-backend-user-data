@@ -67,3 +67,20 @@ class DB:
             if user is None:
                 raise NoResultFound("User not found.")
             return user
+
+    def update_user(self, user_id: int, **updates) -> None:
+        """Update user information in the database."""
+        user = self.find_user_by(id=user_id)
+        if user is None:
+            return
+        update_fields = {}
+        for key, value in updates.items():
+            if hasattr(User, key):
+                update_fields[getattr(User, key)] = value
+            else:
+                raise ValueError(f"Invalid field: {key}")
+        self._session.query(User).filter(User.id == user_id).update(
+            update_fields,
+            synchronize_session=False,
+        )
+        self._session.commit()
